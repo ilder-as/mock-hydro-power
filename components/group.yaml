@@ -1,7 +1,7 @@
 type: string
 enum:
-  - SISU
-  - SUL
-  - SUN
+  - GROUP1
+  - GROUP2
+  - GROUP3
 x-faker:
-  helpers.arrayElement: [["SISU", "SUL", "SUN"]]
+  helpers.arrayElement: [["GROUP1", "GROUP2", "GROUP3"]]
