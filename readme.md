@@ -17,3 +17,5 @@ prism mock openapi.yaml -d
 ```
 
 The API uses Faker to generate dynamic mock data. The dynamic mode (-d) ensures that each time you make a request, you receive randomized data based on the schema.
+
+<img width="855" alt="image" src="https://github.com/user-attachments/assets/4f29e6f2-20cf-46e2-bf8d-40925e91ed0d">
