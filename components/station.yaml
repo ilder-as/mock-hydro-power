@@ -1,0 +1,110 @@
+type: object
+required:
+  [
+    "id",
+    "name",
+    "group",
+    "total_capacity_mva",
+    "produced_today_mwh",
+    "status",
+    "location",
+  ]
+properties:
+  station:
+    type: object
+    properties:
+      id:
+        type: string
+        x-faker: datatype.uuid
+      name:
+        type: string
+        x-faker: address.cityName
+      group:
+        $ref: "group.yaml" # Reference to group.yaml
+      status:
+        type: string
+        enum:
+          - in operation
+          - not in operation
+          - ready to start
+        x-faker:
+          helpers.arrayElement:
+            [["in operation", "not in operation", "ready to start"]]
+      location:
+        $ref: "location.yaml"
+      photo_url:
+        type: string
+        format: uri
+        description: URL to a photo of the station
+        x-faker: image.imageUrl
+
+  production:
+    type: object
+    properties:
+      station_producing_now_mw:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 1
+            max: 50
+      station_produced_today_mwh:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 1
+            max: 50
+      station_produced_last_7_days_mwh:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 1
+            max: 250
+      station_used_capacity_today_percentage:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 1
+            max: 100
+      station_used_capacity_last_7_days_percentage:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 1
+            max: 100
+      generator_total_capacity_mva:
+        type: number
+        format: float
+        x-faker:
+          datatype.float:
+            min: 10
+            max: 400
+      generators:
+        type: array
+        minItems: 1
+        items:
+          type: object
+          properties:
+            status:
+              type: string
+              enum:
+                - in operation
+                - not in operation
+                - ready to start
+              x-faker:
+                helpers.arrayElement:
+                  [["in operation", "not in operation", "ready to start"]]
+            generator_id:
+              type: string
+              x-faker: datatype.uuid
+            last_reading_mva:
+              type: number
+              format: float
+              x-faker:
+                datatype.float:
+                  min: 10
+                  max: 150

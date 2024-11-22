@@ -1,0 +1,15 @@
+type: object
+properties:
+  id:
+    type: string
+    x-faker: random.arrayElement
+    enum:
+      - last_30_days
+      - last_365_days
+  count:
+    type: integer
+    x-faker: datatype.number
+    example: 5
+  period:
+    type: string
+    example: "last_30_days"

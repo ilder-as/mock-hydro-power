@@ -1,0 +1,259 @@
+openapi: 3.0.0
+info:
+  title: Power Station API
+  version: 1.0.0
+
+x-json-schema-faker:
+  minItems: 3
+
+paths:
+  /overview:
+    get:
+      summary: Get an overview of aggregated data for UI
+      description: Returns a high-level overview including stations, magazines, production, and financials for the dashboard.
+      responses:
+        "200":
+          description: Aggregated overview data for the dashboard
+          content:
+            application/json:
+              schema:
+                $ref: "./components/overview.yaml"
+
+  /stations:
+    get:
+      summary: Get list of stations
+      responses:
+        "200":
+          description: List of stations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "./components/station.yaml"
+
+  /stations/{uuid}:
+    get:
+      summary: Get a specific station by UUID
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the station
+      responses:
+        "200":
+          description: A single station
+          content:
+            application/json:
+              schema:
+                $ref: "./components/station.yaml"
+        "404":
+          description: Station not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Station not found"
+
+  /stations/{uuid}/history:
+    get:
+      summary: Get historical data for a specific station
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the station
+        - in: query
+          name: start_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: The start date for the historical data range (e.g., "2023-01-01")
+        - in: query
+          name: end_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: The end date for the historical data range (e.g., "2023-01-31")
+      responses:
+        "200":
+          description: Historical data for the specified station
+          content:
+            application/json:
+              schema:
+                $ref: "./components/history.yaml"
+        "404":
+          description: Station not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Station not found"
+
+  /magazines:
+    get:
+      summary: Get list of water reservoirs (magazines) and their details
+      responses:
+        "200":
+          description: List of water reservoirs with levels, deviations, and related rivers
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 6
+                items:
+                  $ref: "./components/magazine.yaml"
+
+  /magazines/{uuid}:
+    get:
+      summary: Get a specific magazine by UUID
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the magazine
+      responses:
+        "200":
+          description: A single magazine
+          content:
+            application/json:
+              schema:
+                $ref: "./components/magazine.yaml"
+        "404":
+          description: Magazine not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Magazine not found"
+
+  /magazines/{uuid}/rivers:
+    get:
+      summary: Get list of rivers related to a specific magazine
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the magazine
+      responses:
+        "200":
+          description: List of rivers related to the specified magazine
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 4
+                items:
+                  $ref: "./components/river.yaml"
+        "404":
+          description: Magazine not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Magazine not found"
+
+  /magazines/{uuid}/rivers/{river_id}:
+    get:
+      summary: Get a specific river related to a magazine by river ID
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the magazine
+        - in: path
+          name: river_id
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The unique identifier of the river
+      responses:
+        "200":
+          description: A single river related to the specified magazine
+          content:
+            application/json:
+              schema:
+                $ref: "./components/river.yaml"
+        "404":
+          description: River not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "River not found"
+
+  /magazines/{uuid}/history:
+    get:
+      summary: Get historical data for a specific magazine
+      parameters:
+        - in: path
+          name: uuid
+          required: true
+          schema:
+            type: string
+            format: uuid
+          description: The UUID of the magazine
+        - in: query
+          name: start_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: The start date for the historical data range (e.g., "2023-01-01")
+        - in: query
+          name: end_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: The end date for the historical data range (e.g., "2023-01-31")
+      responses:
+        "200":
+          description: Historical data for the specified magazine
+          content:
+            application/json:
+              schema:
+                $ref: "./components/magazine_history.yaml"
+        "404":
+          description: Magazine not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Magazine not found"

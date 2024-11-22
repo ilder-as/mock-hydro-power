@@ -1,0 +1,71 @@
+type: object
+description: Historical data for a hydroelectric power station, with day-by-day increments
+properties:
+  station_id:
+    type: string
+    format: uuid
+    description: The UUID of the station
+  history:
+    type: array
+    minItems: 28 # Four weeks
+    maxItems: 28 # Four weeks
+    items:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          x-faker: date.past
+        produced_mwh:
+          type: number
+          description: Energy produced at the given timestamp (in MWh)
+          x-faker:
+            datatype.float:
+              min: 1.0
+              max: 50.0
+        used_capacity_percentage:
+          type: number
+          description: Percentage of total capacity utilized
+          x-faker:
+            datatype.float:
+              min: 10.0
+              max: 100.0
+        water_flow_cubic_meters_per_sec:
+          type: number
+          description: Water flow rate through turbines in cubic meters per second
+          x-faker:
+            datatype.float:
+              min: 10.0
+              max: 500.0
+        reservoir_level_meters:
+          type: number
+          description: Reservoir water level in meters
+          x-faker:
+            datatype.float:
+              min: 50.0
+              max: 100.0
+        efficiency_percentage:
+          type: number
+          description: Efficiency of the station at the timestamp, as a percentage
+          x-faker:
+            datatype.float:
+              min: 60.0
+              max: 100.0
+        downtime_minutes:
+          type: integer
+          description: Downtime in minutes
+          x-faker:
+            datatype.number:
+              min: 0
+              max: 1440
+        temperature_celsius:
+          type: number
+          description: Ambient temperature near the station in degrees Celsius
+          x-faker:
+            datatype.float:
+              min: -10.0
+              max: 30.0
+required:
+  - station_id
+  - history
+additionalProperties: false

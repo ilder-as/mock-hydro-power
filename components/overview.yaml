@@ -1,0 +1,177 @@
+type: object
+description: High-level overview of stations, magazines, production, and financials for the UI dashboard
+properties:
+  production:
+    type: object
+    description: Actual production values
+    properties:
+      current_production_mw:
+        type: number
+        format: float
+        description: Current production in MW
+        example: 342.3
+        x-faker:
+          datatype.float:
+            min: 100
+            max: 500
+      production_percentage:
+        type: number
+        format: float
+        description: Current production as a percentage of maximum capacity
+        example: 70
+        x-faker:
+          datatype.float:
+            min: 0
+            max: 100
+      max_capacity_mw:
+        type: number
+        format: float
+        description: Maximum capacity in MW
+        example: 484
+        x-faker:
+          datatype.float:
+            min: 400
+            max: 500
+      production_today_mwh:
+        type: number
+        format: float
+        description: Production so far today in MWh
+        example: 584.4
+        x-faker:
+          datatype.float:
+            min: 0
+            max: 1000
+      production_last_7_days_gwh:
+        type: number
+        format: float
+        description: Production in the last 7 days in GWh
+        example: 34.4
+        x-faker:
+          datatype.float:
+            min: 0
+            max: 100
+
+  magazines:
+    type: object
+    properties:
+      total_fillgrade_percentage:
+        type: number
+        format: float
+        description: Current fillgrade of all magazines as a percentage
+        example: 42
+        x-faker:
+          datatype.float:
+            min: 0
+            max: 100
+
+  financials:
+    type: object
+    description: Financial production values
+    properties:
+      income_today_kr:
+        type: number
+        format: int64
+        description: Income from production today in Kr
+        example: 345932
+        x-faker:
+          datatype.number:
+            min: 100000
+            max: 500000
+      income_last_7_days_kr:
+        type: number
+        format: int64
+        description: Income from production in the last 7 days in Kr
+        example: 4300482
+        x-faker:
+          datatype.number:
+            min: 1000000
+            max: 7000000
+      spot_price_now_kr_per_mwh:
+        type: number
+        format: float
+        description: Current spot price in Kr per MWh for NH4
+        example: 243.44
+        x-faker:
+          datatype.float:
+            min: 200
+            max: 300
+      spot_price_last_24_hours_avg_kr_per_mwh:
+        type: number
+        format: float
+        description: Average spot price in Kr per MWh for the last 24 hours
+        example: 253.54
+        x-faker:
+          datatype.float:
+            min: 200
+            max: 300
+      spot_price_trend:
+        type: array
+        minItems: 7
+        maxItems: 7
+        description: Trend data for the spot price over the last 24 hours, with hourly timestamps
+        items:
+          type: object
+          properties:
+            timestamp:
+              type: string
+              format: date-time
+              description: ISO 8601 timestamp for each hourly price
+              example: "2023-10-01T14:00:00Z"
+              x-faker: date.recent
+            price_per_mwh:
+              type: number
+              format: float
+              description: Spot price in Kr per MWh at the given timestamp
+              example: 250.00
+              x-faker:
+                datatype.float:
+                  min: 200
+                  max: 300
+
+  reporting:
+    type: object
+    properties:
+      registered_issues_last_30_days:
+        type: integer
+        description: Number of issues registered in the last 30 days
+        example: 5
+        x-faker:
+          datatype.number:
+            min: 1
+            max: 10
+      planned_last_30_days:
+        type: integer
+        description: Number of planned actions in the last 30 days
+        example: 20
+        x-faker:
+          datatype.number:
+            min: 1
+            max: 30
+      closed_last_30_days:
+        type: integer
+        description: Number of issues closed in the last 30 days
+        example: 15
+        x-faker:
+          datatype.number:
+            min: 1
+            max: 30
+
+  callouts:
+    type: object
+    properties:
+      callouts_last_30_days:
+        type: integer
+        description: Number of callouts in the last 30 days
+        example: 6
+        x-faker:
+          datatype.number:
+            min: 1
+            max: 10
+      callouts_last_365_days:
+        type: integer
+        description: Number of callouts in the last 365 days
+        example: 25
+        x-faker:
+          datatype.number:
+            min: 10
+            max: 50

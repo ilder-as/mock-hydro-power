@@ -1,0 +1,7 @@
+type: string
+enum:
+  - SISU
+  - SUL
+  - SUN
+x-faker:
+  helpers.arrayElement: [["SISU", "SUL", "SUN"]]

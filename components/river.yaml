@@ -1,0 +1,36 @@
+type: object
+description: Details about an individual river related to a magazine or reservoir.
+properties:
+  river_id:
+    type: string
+    format: uuid
+    description: Unique identifier for the river
+    x-faker: datatype.uuid
+  river_name:
+    type: string
+    description: Name of the river
+    x-faker: name.firstName
+  location:
+    $ref: "location.yaml"
+  min_flow_rate_liters_per_sec:
+    type: number
+    format: float
+    description: Required minimum flow rate for the river in liters per second
+    x-faker:
+      datatype.float:
+        min: 10.0
+        max: 1000.0
+  deviation_percentage:
+    type: number
+    format: float
+    description: Deviation from the minimum flow rate as a percentage
+    x-faker:
+      datatype.float:
+        min: -30.0
+        max: 30.0
+required:
+  - river_id
+  - river_name
+  - min_flow_rate_liters_per_sec
+  - deviation_percentage
+additionalProperties: false

@@ -1,0 +1,23 @@
+type: object
+description: Geographic location with latitude and longitude.
+properties:
+  latitude:
+    type: number
+    format: float
+    description: Latitude of the location
+    x-faker:
+      datatype.float:
+        min: 66.0
+        max: 69.5
+  longitude:
+    type: number
+    format: float
+    description: Longitude of the location
+    x-faker:
+      datatype.float:
+        min: 13.0
+        max: 20.0
+required:
+  - latitude
+  - longitude
+additionalProperties: false

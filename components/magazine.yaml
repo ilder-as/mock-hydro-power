@@ -1,0 +1,36 @@
+type: object
+description: A single magazine or reservoir with its details.
+properties:
+  id:
+    type: string
+    format: uuid
+    description: The unique identifier of the magazine
+    x-faker: datatype.uuid
+  name:
+    type: string
+    description: Name of the magazine
+    x-faker: name.firstName
+  total_storage_percentage:
+    type: number
+    format: float
+    description: Total storage level as a percentage
+    x-faker:
+      datatype.float:
+        min: 0.0
+        max: 100.0
+  daily_inflow_percentage:
+    type: number
+    format: float
+    description: Inflow change percentage today
+    x-faker:
+      datatype.float:
+        min: -10.0
+        max: 10.0
+  weekly_inflow_percentage:
+    type: number
+    format: float
+    description: Inflow change percentage over the last 7 days
+    x-faker:
+      datatype.float:
+        min: -20.0
+        max: 20.0

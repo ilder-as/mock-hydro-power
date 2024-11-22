@@ -1,0 +1,53 @@
+type: object
+description: Historical data for a magazine, with day-by-day increments.
+properties:
+  magazine_id:
+    type: string
+    format: uuid
+    description: The UUID of the magazine
+  history:
+    type: array
+    minItems: 28 # Four weeks
+    items:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          x-faker: date.past
+        storage_percentage:
+          type: number
+          format: float
+          description: Storage level at the given timestamp (as a percentage)
+          x-faker:
+            datatype.float:
+              min: 0.0
+              max: 100.0
+        inflow_rate_liters_per_sec:
+          type: number
+          format: float
+          description: Inflow rate in liters per second
+          x-faker:
+            datatype.float:
+              min: 0.0
+              max: 1000.0
+        outflow_rate_liters_per_sec:
+          type: number
+          format: float
+          description: Outflow rate in liters per second
+          x-faker:
+            datatype.float:
+              min: 0.0
+              max: 1000.0
+        deviation_percentage:
+          type: number
+          format: float
+          description: Deviation from normal capacity as a percentage
+          x-faker:
+            datatype.float:
+              min: -30.0
+              max: 30.0
+required:
+  - magazine_id
+  - history
+additionalProperties: false
