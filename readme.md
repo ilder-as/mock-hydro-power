@@ -13,7 +13,7 @@ Before you can run the mock API, make sure you have **Node.js** installed.
 To start the mock API, simply run the following command:
 
 ```bash
-pnpm api:mock
+prism mock openapi.yaml -d
 ```
 
 The API uses Faker to generate dynamic mock data. The dynamic mode (-d) ensures that each time you make a request, you receive randomized data based on the schema.
