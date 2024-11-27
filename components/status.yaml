@@ -1,0 +1,7 @@
+type: string
+enum:
+  - in operation
+  - not in operation
+  - ready to start
+x-faker:
+  helpers.arrayElement: [["in operation", "not in operation", "ready to start"]]

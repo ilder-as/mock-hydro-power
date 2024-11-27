@@ -6,6 +6,8 @@ We are using [Prism](https://stoplight.io/open-source/prism) from Stoplight to m
 
 ## Getting Started
 
+See https://v6.fakerjs.dev/guide/ for allowed methods for data generation.
+
 ### Prerequisites
 
 Before you can run the mock API, make sure you have **Node.js** installed.

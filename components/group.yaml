@@ -1,7 +1,7 @@
 type: string
 enum:
-  - GROUP1
-  - GROUP2
-  - GROUP3
+  - ExampleGroup1
+  - SomeGroup2
+  - AnotherGroup3
 x-faker:
-  helpers.arrayElement: [["GROUP1", "GROUP2", "GROUP3"]]
+  helpers.arrayElement: [["ExampleGroup1", "SomeGroup2", "AnotherGroup3"]]

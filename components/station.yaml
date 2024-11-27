@@ -9,27 +9,23 @@ required:
     "status",
     "location",
   ]
+description: A single station with its details.
 properties:
   station:
-    type: object
     properties:
       id:
         type: string
-        x-faker: datatype.uuid
+        description: The unique identifier of the station in RDS PS Format
+        x-faker:
+          helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
       name:
         type: string
         x-faker: address.cityName
+        example: ByNavn
       group:
-        $ref: "group.yaml" # Reference to group.yaml
+        $ref: "group.yaml"
       status:
-        type: string
-        enum:
-          - in operation
-          - not in operation
-          - ready to start
-        x-faker:
-          helpers.arrayElement:
-            [["in operation", "not in operation", "ready to start"]]
+        $ref: "status.yaml"
       location:
         $ref: "location.yaml"
       photo_url:
@@ -90,14 +86,7 @@ properties:
           type: object
           properties:
             status:
-              type: string
-              enum:
-                - in operation
-                - not in operation
-                - ready to start
-              x-faker:
-                helpers.arrayElement:
-                  [["in operation", "not in operation", "ready to start"]]
+              $ref: "status.yaml"
             generator_id:
               type: string
               x-faker: datatype.uuid
