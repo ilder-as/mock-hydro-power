@@ -3,11 +3,12 @@ description: Historical data for a magazine, with day-by-day increments.
 properties:
   magazine_id:
     type: string
-    format: uuid
-    description: The UUID of the magazine
+    format: string
+    description: The unique identifier of the COMPONENT in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
   history:
     type: array
-    minItems: 28 # Four weeks
     items:
       type: object
       properties:

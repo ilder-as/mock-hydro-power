@@ -3,8 +3,10 @@ description: Historical data for a hydroelectric power station, with day-by-day 
 properties:
   station_id:
     type: string
-    format: uuid
-    description: The UUID of the station
+    format: string
+    description: The unique identifier of the station in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
   history:
     type: array
     minItems: 28 # Four weeks

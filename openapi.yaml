@@ -32,17 +32,19 @@ paths:
                 items:
                   $ref: "./components/station.yaml"
 
-  /stations/{uuid}:
+  /stations/{id}:
     get:
-      summary: Get a specific station by UUID
+      summary: Get a specific station by id
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the station
+            format: string
+            description: The unique identifier of the station in RDS PS Format
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
       responses:
         "200":
           description: A single station
@@ -61,17 +63,19 @@ paths:
                     type: string
                     example: "Station not found"
 
-  /stations/{uuid}/history:
+  /stations/{id}/history:
     get:
       summary: Get historical data for a specific station
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the station
+            format: string
+            description: The ID of the station
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
         - in: query
           name: start_date
           required: false
@@ -118,17 +122,19 @@ paths:
                 items:
                   $ref: "./components/magazine.yaml"
 
-  /magazines/{uuid}:
+  /magazines/{id}:
     get:
       summary: Get a specific magazine by UUID
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the magazine
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+          description: The ID of the magazine
       responses:
         "200":
           description: A single magazine
@@ -147,17 +153,19 @@ paths:
                     type: string
                     example: "Magazine not found"
 
-  /magazines/{uuid}/rivers:
+  /magazines/{id}/rivers:
     get:
       summary: Get list of rivers related to a specific magazine
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the magazine
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+            description: The ID of the river
       responses:
         "200":
           description: List of rivers related to the specified magazine
@@ -179,23 +187,26 @@ paths:
                     type: string
                     example: "Magazine not found"
 
-  /magazines/{uuid}/rivers/{river_id}:
+  /magazines/{id}/rivers/{river_id}:
     get:
       summary: Get a specific river related to a magazine by river ID
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the magazine
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
         - in: path
           name: river_id
           required: true
           schema:
             type: string
-            format: uuid
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
           description: The unique identifier of the river
       responses:
         "200":
@@ -215,17 +226,18 @@ paths:
                     type: string
                     example: "River not found"
 
-  /magazines/{uuid}/history:
+  /magazines/{id}/history:
     get:
       summary: Get historical data for a specific magazine
       parameters:
         - in: path
-          name: uuid
+          name: id
           required: true
           schema:
             type: string
-            format: uuid
-          description: The UUID of the magazine
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
         - in: query
           name: start_date
           required: false
