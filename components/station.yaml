@@ -1,20 +1,11 @@
 type: object
-required:
-  [
-    "id",
-    "name",
-    "group",
-    "total_capacity_mva",
-    "produced_today_mwh",
-    "status",
-    "location",
-  ]
 description: A single station with its details.
 properties:
   station:
     properties:
       id:
         type: string
+        required: true
         description: The unique identifier of the station in RDS PS Format
         x-faker:
           helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format

@@ -1,9 +1,11 @@
 type: object
 description: Historical data for a magazine, with day-by-day increments.
+additionalProperties: false # No additional properties allowed for x-faker
 properties:
   magazine_id:
     type: string
     format: string
+    required: true
     description: The unique identifier of the COMPONENT in RDS PS Format
     x-faker:
       helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
@@ -54,7 +56,4 @@ properties:
               min: -30.0
               max: 30.0
           example: 5.0
-required:
-  - magazine_id
-  - history
 additionalProperties: false
