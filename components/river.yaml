@@ -6,10 +6,12 @@ properties:
     format: uuid
     description: Unique identifier for the river
     x-faker: datatype.uuid
+    example: "123e4567-e89b-12d3-a456-426614174000"
   river_name:
     type: string
     description: Name of the river
     x-faker: name.firstName
+    example: "RiverName"
   location:
     $ref: "location.yaml"
   min_flow_rate_liters_per_sec:
@@ -20,6 +22,7 @@ properties:
       datatype.float:
         min: 10.0
         max: 1000.0
+    example: 500.0
   deviation_percentage:
     type: number
     format: float
@@ -28,6 +31,7 @@ properties:
       datatype.float:
         min: -30.0
         max: 30.0
+    example: 5.0
 required:
   - river_id
   - river_name

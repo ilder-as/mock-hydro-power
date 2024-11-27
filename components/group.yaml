@@ -1,7 +1,9 @@
 type: string
+description: The group to which the station belongs. The grouping is used for various purposes, such as reporting and maintenance.
 enum:
   - ExampleGroup1
   - SomeGroup2
   - AnotherGroup3
+example: ExampleGroup1
 x-faker:
   helpers.arrayElement: [["ExampleGroup1", "SomeGroup2", "AnotherGroup3"]]
