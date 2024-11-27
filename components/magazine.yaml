@@ -3,13 +3,14 @@ description: A single magazine or reservoir with its details.
 properties:
   id:
     type: string
-    format: uuid
-    description: The unique identifier of the magazine
-    x-faker: datatype.uuid
+    description: The unique identifier of the component in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
   name:
     type: string
     description: Name of the magazine
     x-faker: name.firstName
+    example: "MagazineName"
   total_storage_percentage:
     type: number
     format: float
@@ -18,6 +19,7 @@ properties:
       datatype.float:
         min: 0.0
         max: 100.0
+    example: 75.0
   daily_inflow_percentage:
     type: number
     format: float
@@ -26,6 +28,7 @@ properties:
       datatype.float:
         min: -10.0
         max: 10.0
+    example: 5.0
   weekly_inflow_percentage:
     type: number
     format: float
@@ -34,3 +37,4 @@ properties:
       datatype.float:
         min: -20.0
         max: 20.0
+    example: 10.0

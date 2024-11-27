@@ -4,9 +4,11 @@ properties:
   station_id:
     type: string
     format: string
+    required: true
     description: The unique identifier of the station in RDS PS Format
     x-faker:
       helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+    example: "AB1.CD2.EF3"
   history:
     type: array
     minItems: 28 # Four weeks
@@ -18,6 +20,7 @@ properties:
           type: string
           format: date-time
           x-faker: date.past
+          example: "2023-10-01T14:00:00Z"
         produced_mwh:
           type: number
           description: Energy produced at the given timestamp (in MWh)
@@ -25,6 +28,7 @@ properties:
             datatype.float:
               min: 1.0
               max: 50.0
+          example: 25.0
         used_capacity_percentage:
           type: number
           description: Percentage of total capacity utilized
@@ -32,6 +36,7 @@ properties:
             datatype.float:
               min: 10.0
               max: 100.0
+          example: 75.0
         water_flow_cubic_meters_per_sec:
           type: number
           description: Water flow rate through turbines in cubic meters per second
@@ -39,6 +44,7 @@ properties:
             datatype.float:
               min: 10.0
               max: 500.0
+          example: 300.0
         reservoir_level_meters:
           type: number
           description: Reservoir water level in meters
@@ -46,6 +52,7 @@ properties:
             datatype.float:
               min: 50.0
               max: 100.0
+          example: 75.0
         efficiency_percentage:
           type: number
           description: Efficiency of the station at the timestamp, as a percentage
@@ -53,6 +60,7 @@ properties:
             datatype.float:
               min: 60.0
               max: 100.0
+          example: 85.0
         downtime_minutes:
           type: integer
           description: Downtime in minutes
@@ -60,6 +68,7 @@ properties:
             datatype.number:
               min: 0
               max: 1440
+          example: 30
         temperature_celsius:
           type: number
           description: Ambient temperature near the station in degrees Celsius
@@ -67,7 +76,5 @@ properties:
             datatype.float:
               min: -10.0
               max: 30.0
-required:
-  - station_id
-  - history
+          example: 15.0
 additionalProperties: false

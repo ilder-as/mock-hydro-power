@@ -1,12 +1,15 @@
 type: object
 description: Historical data for a magazine, with day-by-day increments.
+additionalProperties: false # No additional properties allowed for x-faker
 properties:
   magazine_id:
     type: string
     format: string
+    required: true
     description: The unique identifier of the COMPONENT in RDS PS Format
     x-faker:
       helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+    example: "AB1.CD2.EF3"
   history:
     type: array
     items:
@@ -16,6 +19,7 @@ properties:
           type: string
           format: date-time
           x-faker: date.past
+          example: "2023-10-01T14:00:00Z"
         storage_percentage:
           type: number
           format: float
@@ -24,6 +28,7 @@ properties:
             datatype.float:
               min: 0.0
               max: 100.0
+          example: 75.0
         inflow_rate_liters_per_sec:
           type: number
           format: float
@@ -32,6 +37,7 @@ properties:
             datatype.float:
               min: 0.0
               max: 1000.0
+          example: 500.0
         outflow_rate_liters_per_sec:
           type: number
           format: float
@@ -40,6 +46,7 @@ properties:
             datatype.float:
               min: 0.0
               max: 1000.0
+          example: 450.0
         deviation_percentage:
           type: number
           format: float
@@ -48,7 +55,5 @@ properties:
             datatype.float:
               min: -30.0
               max: 30.0
-required:
-  - magazine_id
-  - history
+          example: 5.0
 additionalProperties: false

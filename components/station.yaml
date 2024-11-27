@@ -1,84 +1,91 @@
 type: object
-required:
-  [
-    "id",
-    "name",
-    "group",
-    "total_capacity_mva",
-    "produced_today_mwh",
-    "status",
-    "location",
-  ]
 description: A single station with its details.
 properties:
   station:
     properties:
       id:
         type: string
+        required: true
         description: The unique identifier of the station in RDS PS Format
         x-faker:
           helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+        example: "AB1.CD2.EF3"
       name:
         type: string
+        description: The name of the station
         x-faker: address.cityName
         example: ByNavn
       group:
         $ref: "group.yaml"
       status:
+        required: true
         $ref: "status.yaml"
       location:
+        required: true
         $ref: "location.yaml"
       photo_url:
         type: string
         format: uri
         description: URL to a photo of the station
         x-faker: image.imageUrl
-
+        example: "http://example.com/photo.jpg"
   production:
     type: object
     properties:
       station_producing_now_mw:
         type: number
         format: float
+        description: Current production in MW
         x-faker:
           datatype.float:
             min: 1
             max: 50
+        example: 25.5
       station_produced_today_mwh:
         type: number
         format: float
+        description: Total production today in MWh
         x-faker:
           datatype.float:
             min: 1
             max: 50
+        example: 120.5
       station_produced_last_7_days_mwh:
         type: number
         format: float
+        description: Total production in the last 7 days in MWh
         x-faker:
           datatype.float:
             min: 1
             max: 250
+        example: 700.0
       station_used_capacity_today_percentage:
         type: number
         format: float
+        description: Percentage of capacity used today
         x-faker:
           datatype.float:
             min: 1
             max: 100
+        example: 75.0
       station_used_capacity_last_7_days_percentage:
         type: number
         format: float
+        description: Percentage of capacity used in the last 7 days
         x-faker:
           datatype.float:
             min: 1
             max: 100
+        example: 80.0
       generator_total_capacity_mva:
         type: number
         format: float
+        description: Total capacity of the generator in MVA
         x-faker:
           datatype.float:
             min: 10
             max: 400
+        example: 350.0
       generators:
         type: array
         minItems: 1
@@ -89,11 +96,16 @@ properties:
               $ref: "status.yaml"
             generator_id:
               type: string
-              x-faker: datatype.uuid
+              description: Unique identifier for the generator in RDS PS Format
+              x-faker:
+                helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+              example: "AB1.CD2.EF3"
             last_reading_mva:
               type: number
               format: float
+              description: Last recorded capacity in MVA
               x-faker:
                 datatype.float:
                   min: 10
                   max: 150
+              example: 100.0
