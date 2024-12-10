@@ -14,5 +14,5 @@ COPY components/ ./components/
 # Expose the default port Prism runs on
 EXPOSE 4010
 
-# Command to start the Prism mock server in dynamic mode
-CMD ["prism", "mock", "openapi.yaml", "-d"]
+# Command to start the Prism mock server in dynamic mode, listening on 0.0.0.0
+CMD ["prism", "mock", "-h", "0.0.0.0", "openapi.yaml", "-d"]
