@@ -1,0 +1,32 @@
+type: object
+properties:
+  status:
+    $ref: "status.yaml"
+  generator_id:
+    type: string
+    description: Unique identifier for the generator in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+    example: "AB1.CD2.EF3"
+  rated_capacity_mw:
+    type: number
+    format: float
+    description: Rated capacity (merkeytelse) of the generator, typically as indicated on the nameplate, in MW
+    x-faker:
+      datatype.float:
+        min: 0
+        max: 50
+    example: 25.5
+  # 🚩 Start - To be removed when power_reading_mw is implemented
+  last_reading_mva:
+    type: number
+    format: float
+    description: Last recorded capacity in MVA
+    x-faker:
+      datatype.float:
+        min: 10
+        max: 150
+    example: 100.0
+  # 🏁 End - To be removed when power_reading_mw is implemented
+  power_reading_mw:
+    $ref: "reading_mw.yaml"
