@@ -5,6 +5,7 @@ properties:
     type: object
     description: Actual production values
     properties:
+      # 🚩 Start - To be removed when current_production_reading_mw is implemented
       current_production_mw:
         type: number
         format: float
@@ -14,6 +15,9 @@ properties:
           datatype.float:
             min: 100
             max: 500
+      # 🚩 End - To be removed when current_production_reading_mw is implemented
+      current_production_reading_mw:
+        $ref: "reading_mw.yaml"
       production_percentage:
         type: number
         format: float

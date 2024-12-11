@@ -32,6 +32,7 @@ properties:
   production:
     type: object
     properties:
+      # 🚩 Start - To be removed when station_production_now_power_reading_mw is implemented
       station_producing_now_mw:
         type: number
         format: float
@@ -41,6 +42,7 @@ properties:
             min: 1
             max: 50
         example: 25.5
+      # 🏁 End - To be removed when station_production_now_power_reading_mw is implemented
       station_production_now_power_reading_mw:
         $ref: "reading_mw.yaml"
       station_produced_today_mwh:
@@ -79,10 +81,21 @@ properties:
             min: 1
             max: 100
         example: 80.0
+      # 🚩 Start - To be removed when reading_mw is implemented
       generator_total_capacity_mva:
         type: number
         format: float
         description: Total capacity of the generator in MVA
+        x-faker:
+          datatype.float:
+            min: 10
+            max: 400
+        example: 350.0
+      # 🏁 End - To be removed when reading_mw is implemented
+      generator_total_capacity_mw:
+        type: number
+        format: float
+        description: Total capacity of the generator in MW # Replaces above MVA
         x-faker:
           datatype.float:
             min: 10
@@ -102,7 +115,8 @@ properties:
               x-faker:
                 helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
               example: "AB1.CD2.EF3"
-            last_reading_mva: # To be removed when reading_mw is implemented
+            # 🚩 Start - To be removed when reading_mw is implemented
+            last_reading_mva:
               type: number
               format: float
               description: Last recorded capacity in MVA
@@ -111,5 +125,6 @@ properties:
                   min: 10
                   max: 150
               example: 100.0
+            # 🏁 End - To be removed when reading_mw is implemented
             power_reading_mw:
               $ref: "reading_mw.yaml"
