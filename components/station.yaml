@@ -41,6 +41,8 @@ properties:
             min: 1
             max: 50
         example: 25.5
+      station_production_now_power_reading_mw:
+        $ref: "reading_mw.yaml"
       station_produced_today_mwh:
         type: number
         format: float
@@ -100,7 +102,7 @@ properties:
               x-faker:
                 helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
               example: "AB1.CD2.EF3"
-            last_reading_mva:
+            last_reading_mva: # To be removed when reading_mw is implemented
               type: number
               format: float
               description: Last recorded capacity in MVA
@@ -109,3 +111,5 @@ properties:
                   min: 10
                   max: 150
               example: 100.0
+            power_reading_mw:
+              $ref: "reading_mw.yaml"
