@@ -1,7 +1,10 @@
 type: object
 description: A single magazine with its details.
+required: ["magazine"]
 properties:
   magazine:
+    type: object
+    required: ["location"]
     properties:
       id:
         type: string
@@ -14,8 +17,7 @@ properties:
         x-faker: name.firstName
         example: "MagazineName"
       location:
-        required: true
-        $ref: "location.yaml"
+        $ref: "#/components/schemas/location"
       highest_regulated_water_level_elevation_MASL: # MASL – metres above sea level.
         type: number
         format: float
@@ -63,31 +65,31 @@ properties:
       current_water_storage_million_m3:
         type: object
         description: Current water storage as million cubic meters.
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       current_water_storage_percentage:
         type: object
         description: Current storage level in percentage of total capacity.
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       current_water_storage_gwh:
         type: object
         description: Current storage level in GWh of total capacity.
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       current_level_elevation_MASL:
         type: object
         description: Current storage level as elevation MASL (metres above sea level).
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       inflow_m3_per_sec:
         type: object
         description: Current water inflow in cubic meters per second (m³/s).
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       outflow_m3_per_sec:
         type: object
         description: Current water outflow in cubic meters per second (m³/s).
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
       overflow_m3_per_sec:
         type: object
         description: Current estimated water overflow in cubic meters per second (m³/s).
-        $ref: "reading_float.yaml"
+        $ref: "#/components/schemas/reading_float"
   downstream_magazines: # Consider jøran?
     type: array
     description: A list of downstream magazines connected to this magazine.

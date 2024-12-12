@@ -1,10 +1,10 @@
 type: object
 description: Historical data for a hydroelectric power station, with day-by-day increments
+required: ["station_id", "history"]
 properties:
   station_id:
     type: string
     format: string
-    required: true
     description: The unique identifier of the station in RDS PS Format
     x-faker:
       helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format

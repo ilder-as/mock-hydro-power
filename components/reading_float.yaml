@@ -1,7 +1,8 @@
 # reading in mw
 
 type: object
-description: Float reading from industrial equiptment with source health information
+description: Float reading from industrial equiptment with source health information. Type of float is indictated by parten propertie (Gw, Gwh, MASL etc.)
+required: ["value", "last_update_from_source", "source_is_alive"]
 properties:
   value:
     type: number
@@ -23,8 +24,4 @@ properties:
     description: Indicates if the source system is responding within expected timeframes
     x-faker: datatype.boolean
     example: true
-required:
-  - value
-  - last_update_from_source
-  - source_is_alive
 additionalProperties: false

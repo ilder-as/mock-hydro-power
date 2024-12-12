@@ -1,11 +1,13 @@
 type: object
 description: A single station with its details.
+required: ["station"]
 properties:
   station:
+    type: object
+    required: ["id", "status", "location"]
     properties:
       id:
         type: string
-        required: true
         description: The unique identifier of the station in RDS PS Format
         x-faker:
           helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
@@ -16,13 +18,11 @@ properties:
         x-faker: address.cityName
         example: ByNavn
       group:
-        $ref: "group.yaml"
+        $ref: "#/components/schemas/group"
       status:
-        required: true
-        $ref: "status.yaml"
+        $ref: "#/components/schemas/status"
       location:
-        required: true
-        $ref: "location.yaml"
+        $ref: "#/components/schemas/location"
       photo_url:
         type: string
         format: uri
@@ -44,7 +44,7 @@ properties:
         example: 25.5
       # 🏁 End - To be removed when station_production_now_power_reading_mw is implemented
       station_production_now_power_reading_mw:
-        $ref: "reading_mw.yaml"
+        $ref: "#/components/schemas/reading_float"
       station_produced_today_mwh:
         type: number
         format: float
@@ -84,4 +84,4 @@ properties:
       generators:
         type: array
         items:
-          $ref: "generator.yaml"
+          $ref: "#/components/schemas/generator"

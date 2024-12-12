@@ -6,6 +6,29 @@ info:
 x-json-schema-faker:
   minItems: 3
 
+components:
+  schemas:
+    overview:
+      $ref: "./components/overview.yaml"
+    station:
+      $ref: "./components/station.yaml"
+    history:
+      $ref: "./components/history.yaml"
+    magazine:
+      $ref: "./components/magazine.yaml"
+    magazine_history:
+      $ref: "./components/magazine_history.yaml"
+    group:
+      $ref: "./components/group.yaml"
+    status:
+      $ref: "./components/status.yaml"
+    location:
+      $ref: "./components/location.yaml"
+    generator:
+      $ref: "./components/generator.yaml"
+    reading_float:
+      $ref: "./components/reading_float.yaml"
+
 paths:
   /overview:
     get:
@@ -17,7 +40,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./components/overview.yaml"
+                $ref: "#/components/schemas/overview"
 
   /stations:
     get:
@@ -30,7 +53,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: "./components/station.yaml"
+                  $ref: "#/components/schemas/station"
 
   /stations/{id}:
     get:
@@ -51,7 +74,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./components/station.yaml"
+                $ref: "#/components/schemas/station"
         "404":
           description: Station not found
           content:
@@ -96,7 +119,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./components/history.yaml"
+                $ref: "#/components/schemas/history"
         "404":
           description: Station not found
           content:
@@ -120,7 +143,7 @@ paths:
                 type: array
                 maxItems: 6
                 items:
-                  $ref: "./components/magazine.yaml"
+                  $ref: "#/components/schemas/magazine"
 
   /magazines/{id}:
     get:
@@ -141,7 +164,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./components/magazine.yaml"
+                $ref: "#/components/schemas/magazine"
         "404":
           description: Magazine not found
           content:
@@ -185,7 +208,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "./components/magazine_history.yaml"
+                $ref: "#/components/schemas/magazine_history"
         "404":
           description: Magazine not found
           content:

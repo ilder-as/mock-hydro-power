@@ -1,7 +1,7 @@
 type: object
 properties:
   status:
-    $ref: "status.yaml"
+    $ref: "#/components/schemas/status"
   generator_id:
     type: string
     description: Unique identifier for the generator in RDS PS Format
@@ -29,4 +29,4 @@ properties:
     example: 100.0
   # 🏁 End - To be removed when power_reading_mw is implemented
   power_reading_mw:
-    $ref: "reading_mw.yaml"
+    $ref: "#/components/schemas/reading_float"
