@@ -63,7 +63,7 @@ properties:
       current_water_storage_million_m3:
         type: number
         format: float
-        description: Current water content as million cubic meters.
+        description: Current water storage as million cubic meters.
         x-faker:
           datatype.float:
             min: 0.0
@@ -81,7 +81,7 @@ properties:
       current_water_storage_gwh:
         type: number
         format: float
-        description: Current storage level in percentage of total capacity.
+        description: Current storage level in GWh of total capacity.
         x-faker:
           datatype.float:
             min: 0.0
