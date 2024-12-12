@@ -1,4 +1,14 @@
 type: object
+required:
+  [
+    "id",
+    "name",
+    "group",
+    "total_capacity_mva",
+    "produced_today_mwh",
+    "status",
+    "location",
+  ]
 description: A single station with its details.
 required: ["station"]
 properties:

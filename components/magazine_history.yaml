@@ -1,6 +1,5 @@
 type: object
 description: Historical data for a magazine, with day-by-day increments.
-required: ["magazine_id", "history"]
 properties:
   magazine_id:
     type: string
@@ -55,4 +54,3 @@ properties:
               min: -30.0
               max: 30.0
           example: 5.0
-additionalProperties: false
