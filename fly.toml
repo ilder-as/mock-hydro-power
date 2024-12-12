@@ -17,7 +17,7 @@ primary_region = "arn"
   PORT = "4010" # Explicitly set the PORT environment variable for the container
 
 [[vm]]
-  memory = "256mb"
+  memory = "512mb"
   cpu_kind = "shared"
   cpus = 0.25
-  memory_mb = 256
+  memory_mb = 512
