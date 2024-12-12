@@ -1,40 +1,129 @@
 type: object
-description: A single magazine or reservoir with its details.
+description: A single magazine with its details.
 properties:
-  id:
-    type: string
-    description: The unique identifier of the component in RDS PS Format
-    x-faker:
-      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-  name:
-    type: string
-    description: Name of the magazine
-    x-faker: name.firstName
-    example: "MagazineName"
-  total_storage_percentage:
-    type: number
-    format: float
-    description: Total storage level as a percentage
-    x-faker:
-      datatype.float:
-        min: 0.0
-        max: 100.0
-    example: 75.0
-  daily_inflow_percentage:
-    type: number
-    format: float
-    description: Inflow change percentage today
-    x-faker:
-      datatype.float:
-        min: -10.0
-        max: 10.0
-    example: 5.0
-  weekly_inflow_percentage:
-    type: number
-    format: float
-    description: Inflow change percentage over the last 7 days
-    x-faker:
-      datatype.float:
-        min: -20.0
-        max: 20.0
-    example: 10.0
+  magazine:
+    properties:
+      id:
+        type: string
+        description: The unique identifier of the component in RDS PS Format
+        x-faker:
+          helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+      name:
+        type: string
+        description: Name of the magazine
+        x-faker: name.firstName
+        example: "MagazineName"
+      location:
+        required: true
+        $ref: "location.yaml"
+      HRV:
+        type: number
+        format: float
+        description: High regulated volume (maximum capacity in meters)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+      LRV:
+        type: number
+        format: float
+        description: Low regulated volume (minimum capacity in meters)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+      capacity:
+        type: number
+        format: float
+        description: Capacity of the reservoir (GWh)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 1000.0
+      elevation: # Remove maybe?
+        type: number
+        format: float
+        description: Elevation of the reservoir (meters above sea level)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 5000.0
+  storage:
+    type: object
+    description: Storage-related data for the magazine.
+    properties:
+      current_level_percentage:
+        type: number
+        format: float
+        description: Current storage level as a percentage.
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+        example: 75.0
+      current_level_in_elevation:
+        type: number
+        format: float
+        description: Current storage level as elevation.
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+        example: 75.0
+      inflow_m3_per_sec:
+        type: number
+        format: float
+        description: Current water inflow in cubic meters per second (m³/s).
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 500.0
+        example: 120.5
+      outflow_m3_per_sec:
+        type: number
+        format: float
+        description: Current water outflow in cubic meters per second (m³/s).
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 300.0
+        example: 95.3
+      overflow_m3_per_sec:
+        type: number
+        format: float
+        description: Current estimated water overflow in cubic meters per second (m³/s).
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 300.0
+        example: 95.3
+  downstream_magazines: # Consider jøran?
+    type: array
+    description: A list of downstream magazines connected to this magazine.
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the downstream magazine.
+          example: "MG2.BC3.DE4"
+          x-faker:
+            helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+        name:
+          type: string
+          description: Name of the downstream magazine.
+          example: Blackwater
+  first_downstream_station:
+    description: The first station beeing supplied by this magazine.
+    type: object
+    properties:
+      id:
+        type: string
+        description: Unique identifier for the downstream station.
+        example: "MG2.BC3.DE4"
+        x-faker:
+          helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+      name:
+        type: string
+        description: Name of the downstream station.
+        example: StationMan

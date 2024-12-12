@@ -113,7 +113,7 @@ paths:
       summary: Get list of water reservoirs (magazines) and their details
       responses:
         "200":
-          description: List of water reservoirs with levels, deviations, and related rivers
+          description: List of water reservoirs with levels and deviations
           content:
             application/json:
               schema:
@@ -152,79 +152,6 @@ paths:
                   message:
                     type: string
                     example: "Magazine not found"
-
-  /magazines/{id}/rivers:
-    get:
-      summary: Get list of rivers related to a specific magazine
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            format: string
-            x-faker:
-              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-            description: The ID of the river
-      responses:
-        "200":
-          description: List of rivers related to the specified magazine
-          content:
-            application/json:
-              schema:
-                type: array
-                maxItems: 4
-                items:
-                  $ref: "./components/river.yaml"
-        "404":
-          description: Magazine not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "Magazine not found"
-
-  /magazines/{id}/rivers/{river_id}:
-    get:
-      summary: Get a specific river related to a magazine by river ID
-      parameters:
-        - in: path
-          name: id
-          required: true
-          schema:
-            type: string
-            format: string
-            x-faker:
-              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-        - in: path
-          name: river_id
-          required: true
-          schema:
-            type: string
-            format: string
-            x-faker:
-              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-          description: The unique identifier of the river
-      responses:
-        "200":
-          description: A single river related to the specified magazine
-          content:
-            application/json:
-              schema:
-                $ref: "./components/river.yaml"
-        "404":
-          description: River not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: "River not found"
 
   /magazines/{id}/history:
     get:
