@@ -77,7 +77,4 @@ properties:
               min: -10.0
               max: 30.0
           example: 15.0
-required:
-  - station_id
-  - history
 additionalProperties: false
