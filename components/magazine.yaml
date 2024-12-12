@@ -61,68 +61,33 @@ properties:
     description: Storage-related data for the magazine.
     properties:
       current_water_storage_million_m3:
-        type: number
-        format: float
+        type: object
         description: Current water storage as million cubic meters.
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
+        $ref: "reading_float.yaml"
       current_water_storage_percentage:
-        type: number
-        format: float
+        type: object
         description: Current storage level in percentage of total capacity.
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
+        $ref: "reading_float.yaml"
       current_water_storage_gwh:
-        type: number
-        format: float
+        type: object
         description: Current storage level in GWh of total capacity.
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
+        $ref: "reading_float.yaml"
       current_level_elevation_MASL:
-        type: number
-        format: float
+        type: object
         description: Current storage level as elevation MASL (metres above sea level).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
+        $ref: "reading_float.yaml"
       inflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current water inflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 500.0
-        example: 120.5
+        $ref: "reading_float.yaml"
       outflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current water outflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 300.0
-        example: 95.3
+        $ref: "reading_float.yaml"
       overflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current estimated water overflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 300.0
-        example: 95.3
+        $ref: "reading_float.yaml"
   downstream_magazines: # Consider jøran?
     type: array
     description: A list of downstream magazines connected to this magazine.

@@ -1,0 +1,30 @@
+# reading in mw
+
+type: object
+description: Float reading from industrial equiptment with source health information
+properties:
+  value:
+    type: number
+    format: float
+    description: A given reading as float
+    x-faker:
+      datatype.float:
+        min: 0
+        max: 500
+    example: 245.5
+  last_update_from_source:
+    type: string
+    format: date-time
+    description: Timestamp of last update from the source system
+    x-faker: date.recent
+    example: "2024-03-14T15:30:00Z"
+  source_is_alive:
+    type: boolean
+    description: Indicates if the source system is responding within expected timeframes
+    x-faker: datatype.boolean
+    example: true
+required:
+  - value
+  - last_update_from_source
+  - source_is_alive
+additionalProperties: false
