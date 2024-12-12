@@ -14,15 +14,15 @@ Before you can run the mock API, make sure you have **Node.js** installed.
 npm install
 ```
 
-2. Start the development server:
+2. Start the mock server with type generation:
 
 ```bash
-npm start
+npm run mock
 ```
 
-The `npm start` command runs the following steps in sequence:
+The `mock` command runs the following steps in sequence:
 
-1. `npm run generate:api` - Combines YAML files and generates TypeScript types
+1. `npm run generate:api`
    - `npm run combine-yaml` - Combines component YAML files into a single OpenAPI spec
    - `orval --config ./orval.config.ts` - Generates TypeScript types from the spec
 2. `npm run test:types` - Validates TypeScript types
@@ -30,10 +30,10 @@ The `npm start` command runs the following steps in sequence:
 
 ## Available Scripts
 
-- `npm start` - Runs type generation, type checking, and starts the mock server
-- `npm run generate:api` - Generates TypeScript types from the OpenAPI spec
-- `npm run test:types` - Checks TypeScript types
-- `npm run combine-yaml` - Combines component YAML files into a single OpenAPI spec
+- `npm run mock` - Full sequence: generate types, validate, and start mock server
+- `npm run generate:api` - Combines YAML and generates TypeScript types
+- `npm run combine-yaml` - Only combines component YAML files
+- `npm run test:types` - Validates TypeScript types
 
 ## Project Structure
 
@@ -68,7 +68,7 @@ See https://v6.fakerjs.dev/guide/ for allowed methods for data generation in the
 ## Development Workflow
 
 1. Modify OpenAPI schemas in `components/` or the main spec in `openapi.yaml`
-2. Run `npm start` to regenerate types and start the server
+2. Run `npm run mock` to regenerate types and start the server
 3. The mock server will automatically use the updated specification
 
 ## Contributing
@@ -77,8 +77,7 @@ When adding new endpoints or modifying existing ones:
 
 1. Update the relevant component schemas in `components/`
 2. Update the paths in `openapi.yaml`
-3. Run the type generation to ensure type safety
-4. Test the endpoint using the mock server
+3. Run `npm run mock` to validate and test changes
 
 ## License
 
