@@ -16,26 +16,34 @@ properties:
       location:
         required: true
         $ref: "location.yaml"
-      HRV:
+      highest_regulated_water_level_elevation_in_m:
         type: number
         format: float
-        description: High regulated volume (maximum capacity in meters)
+        description: Highest regulated water level in elevation for magazine
         x-faker:
           datatype.float:
             min: 0.0
             max: 100.0
-      LRV:
+      lowest_regulated_water_level_elevation_in_m:
         type: number
         format: float
-        description: Low regulated volume (minimum capacity in meters)
+        description: Lowest regulated water level in elevation for magazine
         x-faker:
           datatype.float:
             min: 0.0
             max: 100.0
-      capacity:
+      capacity_gwh:
         type: number
         format: float
         description: Capacity of the reservoir (GWh)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 1000.0
+      capacity_million_m3:
+        type: number
+        format: float
+        description: Capacity of the reservoir (Mm3)
         x-faker:
           datatype.float:
             min: 0.0
@@ -52,10 +60,28 @@ properties:
     type: object
     description: Storage-related data for the magazine.
     properties:
-      current_level_percentage:
+      current_water_storage_million_m3:
         type: number
         format: float
-        description: Current storage level as a percentage.
+        description: Current water content as million cubic meters.
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+        example: 75.0
+      current_water_storage_in_percentage:
+        type: number
+        format: float
+        description: Current storage level in percentage of total capacity.
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 100.0
+        example: 75.0
+      current_water_storage_in_gwh:
+        type: number
+        format: float
+        description: Current storage level in percentage of total capacity.
         x-faker:
           datatype.float:
             min: 0.0
