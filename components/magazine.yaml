@@ -11,6 +11,8 @@ properties:
         description: The unique identifier of the component in RDS PS Format
         x-faker:
           helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+      group:
+        $ref: "#/components/schemas/group"
       name:
         type: string
         description: Name of the magazine
