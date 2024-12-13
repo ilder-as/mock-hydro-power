@@ -1,12 +1,13 @@
 # reading in mw
 
 type: object
-description: Power reading from industrial equiptment with source health information
+description: Float reading from industrial equiptment with source health information. Type of float is indictated by parten propertie (Gw, Gwh, MASL etc.)
+required: ["value", "last_update_from_source", "source_is_alive"]
 properties:
-  value_mw:
+  value:
     type: number
     format: float
-    description: Power reading in megawatts (MW)
+    description: A given reading as float
     x-faker:
       datatype.float:
         min: 0
@@ -23,8 +24,4 @@ properties:
     description: Indicates if the source system is responding within expected timeframes
     x-faker: datatype.boolean
     example: true
-required:
-  - value_mw
-  - last_update_from_source
-  - source_is_alive
 additionalProperties: false

@@ -17,7 +17,7 @@ properties:
             max: 500
       # 🚩 End - To be removed when current_production_reading_mw is implemented
       current_production_reading_mw:
-        $ref: "reading_mw.yaml"
+        $ref: "#/components/schemas/reading_float"
       production_percentage:
         type: number
         format: float

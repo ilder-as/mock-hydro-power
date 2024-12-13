@@ -54,7 +54,3 @@ properties:
               min: -30.0
               max: 30.0
           example: 5.0
-required:
-  - magazine_id
-  - history
-additionalProperties: false

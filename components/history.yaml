@@ -1,5 +1,6 @@
 type: object
 description: Historical data for a hydroelectric power station, with day-by-day increments
+required: ["station_id", "history"]
 properties:
   station_id:
     type: string
@@ -76,7 +77,4 @@ properties:
               min: -10.0
               max: 30.0
           example: 15.0
-required:
-  - station_id
-  - history
 additionalProperties: false

@@ -1,7 +1,10 @@
 type: object
 description: A single magazine with its details.
+required: ["magazine"]
 properties:
   magazine:
+    type: object
+    required: ["location"]
     properties:
       id:
         type: string
@@ -14,25 +17,24 @@ properties:
         x-faker: name.firstName
         example: "MagazineName"
       location:
-        required: true
-        $ref: "location.yaml"
-      HRV:
+        $ref: "#/components/schemas/location"
+      highest_regulated_water_level_elevation_MASL: # MASL – metres above sea level.
         type: number
         format: float
-        description: High regulated volume (maximum capacity in meters)
+        description: Highest regulated water level in elevation as MASL (metres above sea level) for magazine
         x-faker:
           datatype.float:
             min: 0.0
             max: 100.0
-      LRV:
+      lowest_regulated_water_level_elevation_MASL:
         type: number
         format: float
-        description: Low regulated volume (minimum capacity in meters)
+        description: Lowest regulated water level in elevation as MASL (metres above sea level) for magazine
         x-faker:
           datatype.float:
             min: 0.0
             max: 100.0
-      capacity:
+      capacity_gwh:
         type: number
         format: float
         description: Capacity of the reservoir (GWh)
@@ -40,10 +42,18 @@ properties:
           datatype.float:
             min: 0.0
             max: 1000.0
-      elevation: # Remove maybe?
+      capacity_million_m3:
         type: number
         format: float
-        description: Elevation of the reservoir (meters above sea level)
+        description: Capacity of the reservoir (Mm3)
+        x-faker:
+          datatype.float:
+            min: 0.0
+            max: 1000.0
+      elevation_MASL: # Remove maybe?
+        type: number
+        format: float
+        description: Elevation of the reservoir as MASL (meters above sea level)
         x-faker:
           datatype.float:
             min: 0.0
@@ -52,51 +62,34 @@ properties:
     type: object
     description: Storage-related data for the magazine.
     properties:
-      current_level_percentage:
-        type: number
-        format: float
-        description: Current storage level as a percentage.
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
-      current_level_in_elevation:
-        type: number
-        format: float
-        description: Current storage level as elevation.
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 100.0
-        example: 75.0
+      current_water_storage_million_m3:
+        type: object
+        description: Current water storage as million cubic meters.
+        $ref: "#/components/schemas/reading_float"
+      current_water_storage_percentage:
+        type: object
+        description: Current storage level in percentage of total capacity.
+        $ref: "#/components/schemas/reading_float"
+      current_water_storage_gwh:
+        type: object
+        description: Current storage level in GWh of total capacity.
+        $ref: "#/components/schemas/reading_float"
+      current_level_elevation_MASL:
+        type: object
+        description: Current storage level as elevation MASL (metres above sea level).
+        $ref: "#/components/schemas/reading_float"
       inflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current water inflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 500.0
-        example: 120.5
+        $ref: "#/components/schemas/reading_float"
       outflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current water outflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 300.0
-        example: 95.3
+        $ref: "#/components/schemas/reading_float"
       overflow_m3_per_sec:
-        type: number
-        format: float
+        type: object
         description: Current estimated water overflow in cubic meters per second (m³/s).
-        x-faker:
-          datatype.float:
-            min: 0.0
-            max: 300.0
-        example: 95.3
+        $ref: "#/components/schemas/reading_float"
   downstream_magazines: # Consider jøran?
     type: array
     description: A list of downstream magazines connected to this magazine.

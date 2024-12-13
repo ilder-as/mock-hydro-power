@@ -1,2 +1,25 @@
+# Dependencies
+node_modules/
+
+# Generated files
+src/api/generated/
+dist/
+openapi.combined.yaml
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# System files
 .DS_Store
-.DS_Store?
+Thumbs.db

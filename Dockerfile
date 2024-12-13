@@ -4,15 +4,23 @@ FROM node:18-alpine
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install Prism CLI globally
-RUN npm install -g @stoplight/prism-cli
+# Copy package files
+COPY package*.json ./
 
-# Copy the OpenAPI specification and components into the container
-COPY openapi.yaml .
-COPY components/ ./components/
+# Install dependencies
+RUN npm install
+
+# Copy the rest of the application
+COPY . .
+
+# Generate the combined OpenAPI spec and types
+RUN npm run generate:api
+
+# Validate types
+RUN npm run test:types
 
 # Expose the default port Prism runs on
 EXPOSE 4010
 
 # Command to start the Prism mock server in dynamic mode, listening on 0.0.0.0
-CMD ["prism", "mock", "-h", "0.0.0.0", "openapi.yaml", "-d"]
+CMD ["npx", "prism", "mock", "-h", "0.0.0.0", "openapi.combined.yaml", "-d"]

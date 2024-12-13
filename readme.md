@@ -2,22 +2,83 @@
 
 This folder contains a simple API for mocking data related to power stations and reporting. The API is designed to provide dynamic mock data and can be easily wired towards a real API in the future.
 
-We are using [Prism](https://stoplight.io/open-source/prism) from Stoplight to mock the API based on an OpenAPI specification [githublink](https://github.com/stoplightio/prism).
-
-## Getting Started
-
-See https://v6.fakerjs.dev/guide/ for allowed methods for data generation.
-
-### Prerequisites
+## Prerequisites
 
 Before you can run the mock API, make sure you have **Node.js** installed.
 
-To start the mock API, simply run the following command:
+## Getting Started
+
+1. Install dependencies:
 
 ```bash
-prism mock openapi.yaml -d
+npm install
 ```
 
-The API uses Faker to generate dynamic mock data. The dynamic mode (-d) ensures that each time you make a request, you receive randomized data based on the schema.
+2. Start the mock server with type generation:
 
-<img width="660" alt="image" src="https://github.com/user-attachments/assets/07c446ef-63e6-4ce5-9cc9-0f155ed498a2">
+```bash
+npm run mock
+```
+
+The `mock` command runs the following steps in sequence:
+
+1. `npm run generate:api`
+   - `npm run combine-yaml` - Combines component YAML files into a single OpenAPI spec
+   - `orval --config ./orval.config.ts` - Generates TypeScript types from the spec
+2. `npm run test:types` - Validates TypeScript types
+3. `prism mock openapi.combined.yaml -d` - Starts the mock server with dynamic data
+
+## Available Scripts
+
+- `npm run mock` - Full sequence: generate types, validate, and start mock server
+- `npm run generate:api` - Combines YAML and generates TypeScript types
+- `npm run combine-yaml` - Only combines component YAML files
+- `npm run test:types` - Validates TypeScript types
+
+## Project Structure
+
+```
+.
+├── components/          # OpenAPI component schemas
+├── scripts/            # Build and development scripts
+├── src/
+│   └── api/           # Generated API types and client
+├── openapi.yaml       # Main OpenAPI specification
+└── openapi.combined.yaml  # Generated combined specification
+```
+
+## Mock Server
+
+The mock server uses [Prism](https://stoplight.io/open-source/prism) to provide dynamic responses based on the OpenAPI specification. When running, it will:
+
+- Validate requests against the schema
+- Generate dynamic response data
+- Support all defined endpoints with example data
+
+The server runs on `http://localhost:4010` by default.
+
+## Type Generation
+
+The project uses [Orval](https://orval.dev/) to generate TypeScript types and a React Query client from the OpenAPI specification. Generated files are placed in `src/api/generated/`.
+
+## Data Generation
+
+See https://v6.fakerjs.dev/guide/ for allowed methods for data generation in the OpenAPI schemas.
+
+## Development Workflow
+
+1. Modify OpenAPI schemas in `components/` or the main spec in `openapi.yaml`
+2. Run `npm run mock` to regenerate types and start the server
+3. The mock server will automatically use the updated specification
+
+## Contributing
+
+When adding new endpoints or modifying existing ones:
+
+1. Update the relevant component schemas in `components/`
+2. Update the paths in `openapi.yaml`
+3. Run `npm run mock` to validate and test changes
+
+## License
+
+[Add your license information here]
