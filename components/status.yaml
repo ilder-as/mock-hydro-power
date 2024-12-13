@@ -3,5 +3,14 @@ enum:
   - in operation
   - not in operation
   - ready to start
+  - not ready to start
 x-faker:
-  helpers.arrayElement: [["in operation", "not in operation", "ready to start"]]
+  helpers.arrayElement:
+    [
+      [
+        "in operation",
+        "not in operation",
+        "ready to start",
+        "not ready to start",
+      ],
+    ]
