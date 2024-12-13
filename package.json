@@ -7,7 +7,8 @@
     "generate:api": "npm run combine-yaml && orval --config ./orval.config.ts",
     "test:types": "tsc --noEmit",
     "mock": "npm run generate:api && npm run test:types && prism mock openapi.combined.yaml -d",
-    "postinstall": "mkdir -p src/api/generated src/api/mutator"
+    "postinstall": "mkdir -p src/api/generated src/api/mutator",
+    "buildstep": "npm run generate:api && npm run test:types"
   },
   "devDependencies": {
     "@stoplight/prism-cli": "^5.0.0",
