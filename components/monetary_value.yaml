@@ -1,6 +1,6 @@
 type: object
 description: Monetary value with timestamp and currency information, used for prices, income, and other financial values
-required: ["value", "timestamp", "currency"]
+required: ["value", "currency"]
 properties:
   value:
     type: integer
