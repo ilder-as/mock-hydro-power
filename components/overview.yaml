@@ -72,65 +72,41 @@ properties:
     type: object
     description: Financial production values
     properties:
-      income_today_kr:
-        type: number
-        format: int64
-        description: Income from production today in Kr
-        example: 345932
-        x-faker:
-          datatype.number:
-            min: 100000
-            max: 500000
-      income_last_7_days_kr:
-        type: number
-        format: int64
-        description: Income from production in the last 7 days in Kr
-        example: 4300482
-        x-faker:
-          datatype.number:
-            min: 1000000
-            max: 7000000
-      spot_price_now_kr_per_mwh:
-        type: number
-        format: float
-        description: Current spot price in Kr per MWh for NH4
-        example: 243.44
-        x-faker:
-          datatype.float:
-            min: 200
-            max: 300
-      spot_price_last_24_hours_avg_kr_per_mwh:
-        type: number
-        format: float
-        description: Average spot price in Kr per MWh for the last 24 hours
-        example: 253.54
-        x-faker:
-          datatype.float:
-            min: 200
-            max: 300
+      income_today:
+        $ref: "#/components/schemas/monetary_value"
+        description: Income from production today
+      income_last_7_days:
+        $ref: "#/components/schemas/monetary_value"
+        description: Income from production in the last 7 days
+      spot_price_now:
+        description: Current spot price per MWh.
+        $ref: "#/components/schemas/monetary_value"
+      spot_price_last_24_hours_avg:
+        description: Average spot price per MWh for the last 24 hours.
+        $ref: "#/components/schemas/monetary_value"
+      # 🚩 Start - To be removed in favor of historical_spot_prices and forecast_spot_prices
       spot_price_trend:
         type: array
-        minItems: 7
-        maxItems: 7
-        description: Trend data for the spot price over the last 24 hours, with hourly timestamps
+        minItems: 24
+        maxItems: 24
+        description: DEPRECATED - Use historical_spot_prices for past data and forecast_spot_prices for future data
         items:
-          type: object
-          properties:
-            timestamp:
-              type: string
-              format: date-time
-              description: ISO 8601 timestamp for each hourly price
-              example: "2023-10-01T14:00:00Z"
-              x-faker: date.recent
-            price_per_mwh:
-              type: number
-              format: float
-              description: Spot price in Kr per MWh at the given timestamp
-              example: 250.00
-              x-faker:
-                datatype.float:
-                  min: 200
-                  max: 300
+          $ref: "#/components/schemas/monetary_value"
+      # 🚩 End - To be removed in favor of historical_spot_prices and forecast_spot_prices
+      forecast_spot_prices_next_24_hours:
+        type: array
+        minItems: 24
+        maxItems: 24
+        description: Forecast spot prices for the next 24 hours, with hourly timestamps
+        items:
+          $ref: "#/components/schemas/monetary_value"
+      historical_spot_prices_last_7_days:
+        type: array
+        minItems: 168
+        maxItems: 168
+        description: Historical spot prices for the last 7 days (168 hours), with hourly timestamps
+        items:
+          $ref: "#/components/schemas/monetary_value"
 
   reporting:
     type: object
@@ -143,9 +119,9 @@ properties:
           datatype.number:
             min: 1
             max: 10
-      planned_last_30_days:
+      planned_completed_last_30_days:
         type: integer
-        description: Number of planned actions in the last 30 days
+        description: Number of planned to be completed actions in the last 30 days
         example: 20
         x-faker:
           datatype.number:

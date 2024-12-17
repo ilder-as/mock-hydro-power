@@ -1,0 +1,25 @@
+type: object
+description: Monetary value with timestamp and currency information, used for prices, income, and other financial values
+required: ["value", "currency"]
+properties:
+  value:
+    type: integer
+    description: The monetary value in the smallest currency unit (øre for NOK, cents for EUR/USD), i.e 100 øre for 1 NOK, division by 100 on clientside for øre
+    x-faker:
+      datatype.number:
+        min: 20000
+        max: 100000
+    example: 24344
+  timestamp:
+    type: string
+    format: date-time
+    description: Timestamp for when the value was valid / last updated / calculated
+    x-faker: date.recent
+    example: "2024-03-14T15:30:00Z"
+  currency:
+    type: string
+    description: The currency code for the value (ISO 4217)
+    enum: ["NOK", "EUR", "USD"]
+    x-faker:
+      helpers.arrayElement: [["NOK", "EUR", "USD"]]
+    example: "NOK"
