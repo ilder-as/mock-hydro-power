@@ -28,6 +28,8 @@ components:
       $ref: "./components/generator.yaml"
     reading_float:
       $ref: "./components/reading_float.yaml"
+    monetary_value:
+      $ref: "./components/monetary_value.yaml"
 
 paths:
   /overview:
