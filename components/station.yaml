@@ -31,17 +31,6 @@ properties:
   production:
     type: object
     properties:
-      # 🚩 Start - To be removed when station_production_now_power_reading_mw is implemented
-      station_producing_now_mw:
-        type: number
-        format: float
-        description: Current production in MW
-        x-faker:
-          datatype.float:
-            min: 1
-            max: 50
-        example: 25.5
-      # 🏁 End - To be removed when station_production_now_power_reading_mw is implemented
       station_production_now_power_reading_mw:
         $ref: "#/components/schemas/reading_float"
       station_produced_today_mwh:
