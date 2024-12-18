@@ -17,16 +17,5 @@ properties:
         min: 0
         max: 50
     example: 25.5
-  # 🚩 Start - To be removed when power_reading_mw is implemented
-  last_reading_mva:
-    type: number
-    format: float
-    description: Last recorded capacity in MVA
-    x-faker:
-      datatype.float:
-        min: 10
-        max: 150
-    example: 100.0
-  # 🏁 End - To be removed when power_reading_mw is implemented
   power_reading_mw:
     $ref: "#/components/schemas/reading_float"
