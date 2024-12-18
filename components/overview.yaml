@@ -5,17 +5,6 @@ properties:
     type: object
     description: Actual production values
     properties:
-      # 🚩 Start - To be removed when current_production_reading_mw is implemented
-      current_production_mw:
-        type: number
-        format: float
-        description: Current production in MW
-        example: 342.3
-        x-faker:
-          datatype.float:
-            min: 100
-            max: 500
-      # 🚩 End - To be removed when current_production_reading_mw is implemented
       current_production_reading_mw:
         $ref: "#/components/schemas/reading_float"
       production_percentage:
