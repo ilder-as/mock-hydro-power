@@ -21,7 +21,16 @@ properties:
         x-faker:
           helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
         example: "MG1.AB2.CD3"
-  flow_out_liters_per_sec:
+  flow_type:
+    type: string
+    description: The type of flow associated with the bypass system.
+    enum:
+      - over_dam
+      - discharge
+      - inflow
+      - overflow
+    example: "discharge"
+  flow_liters_per_sec:
         $ref: "#/components/schemas/reading_float"
   flow_requirements:
     type: array
@@ -72,5 +81,4 @@ properties:
               example: 31
 required:
   - id
-  - related_component
 additionalProperties: false
