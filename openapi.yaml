@@ -30,6 +30,8 @@ components:
       $ref: "./components/reading_float.yaml"
     monetary_value:
       $ref: "./components/monetary_value.yaml"
+    bypass_system:
+      $ref: "./components/bypass_system.yaml"
 
 paths:
   /overview:
@@ -221,3 +223,47 @@ paths:
                   message:
                     type: string
                     example: "Magazine not found"
+
+  /bypass-systems:
+    get:
+      summary: Get a list of bypass systems
+      responses:
+        "200":
+          description: A list of bypass systems
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/bypass_system"
+
+  /bypass-systems/{id}:
+    get:
+      summary: Get a specific bypass system by UUID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: string
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+          description: The ID of the magazine
+      responses:
+        "200":
+          description: A single bypass system
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/bypass_system"
+        "404":
+          description: Bypass system not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Bypass system not found"
