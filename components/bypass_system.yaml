@@ -1,0 +1,83 @@
+type: object
+description: A bypass system with configurable flow requirements for different periods.
+properties:
+  id:
+    type: string
+    description: The unique identifier of the bypass system in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+    example: "BP1.CD2.EF3"
+  related_component:
+    type: object
+    description: The related component, either a magazine or a station.
+    properties:
+      type:
+        type: string
+        enum: ["magazine", "station"]
+        description: Type of the related component
+      id:
+        type: string
+        description: The unique identifier of the related component in RDS PS Format
+        x-faker:
+          helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+        example: "MG1.AB2.CD3"
+  flow_type:
+    type: string
+    description: The type of flow associated with the bypass system.
+    enum:
+      - discharge
+      - inflow
+      - overflow
+    example: "discharge"
+  flow_liters_per_sec:
+    $ref: "#/components/schemas/reading_float"
+  flow_requirements:
+    type: array
+    description: Configurable flow requirements for different periods.
+    items:
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the period (e.g., "winter", "summer", "maintenance", "custom")
+          example: "custom"
+        required_flow_liters_per_sec:
+          type: number
+          format: float
+          description: Required flow rate in liters per second
+          x-faker:
+            datatype.float:
+              min: 50.0
+              max: 150.0
+          example: 100.0
+        period:
+          type: object
+          description: The time period for the flow requirement, defined by month and day.
+          properties:
+            start_month:
+              type: integer
+              minimum: 1
+              maximum: 12
+              description: Start month of the period
+              example: 1
+            start_day:
+              type: integer
+              minimum: 1
+              maximum: 31
+              description: Start day of the month
+              example: 1
+            end_month:
+              type: integer
+              minimum: 1
+              maximum: 12
+              description: End month of the period
+              example: 3
+            end_day:
+              type: integer
+              minimum: 1
+              maximum: 31
+              description: End day of the month
+              example: 31
+required:
+  - id
+additionalProperties: false
