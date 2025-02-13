@@ -32,6 +32,10 @@ components:
       $ref: "./components/monetary_value.yaml"
     bypass_system:
       $ref: "./components/bypass_system.yaml"
+    maintenance_issue:
+      $ref: "./components/maintenance_issue.yaml"
+    maintenance_status:
+      $ref: "./components/maintenance_status.yaml"
 
 paths:
   /overview:
@@ -267,3 +271,69 @@ paths:
                   message:
                     type: string
                     example: "Bypass system not found"
+
+  /maintenance-issues:
+    get:
+      summary: Get a list of maintenance issues
+      description: Returns a list of maintenance issues and tasks that can be filtered by various criteria
+      parameters:
+        - in: query
+          name: status
+          required: false
+          schema:
+            $ref: "#/components/schemas/maintenance_status"
+          description: Filter issues by status
+        - in: query
+          name: start_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter issues created on or after this date (e.g., "2024-01-01")
+        - in: query
+          name: end_date
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Filter issues created before this date (e.g., "2024-02-01")
+      responses:
+        "200":
+          description: List of maintenance issues matching the filter criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/maintenance_issue"
+
+  /maintenance-issues/{id}:
+    get:
+      summary: Get a specific maintenance issue by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+            format: string
+            description: The unique identifier of the maintenance issue
+            x-faker:
+              helpers.replaceSymbols: "??#.??#.??#"
+      responses:
+        "200":
+          description: A single maintenance issue
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/maintenance_issue"
+        "404":
+          description: Maintenance issue not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Maintenance issue not found"

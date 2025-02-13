@@ -1,0 +1,14 @@
+type: string
+enum:
+  - registered
+  - planned
+  - closed
+x-faker:
+  helpers.arrayElement:
+    [
+      [
+        "registered",
+        "planned",
+        "closed",
+      ],
+    ] 
