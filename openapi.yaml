@@ -253,7 +253,7 @@ paths:
             format: string
             x-faker:
               helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-          description: The ID of the magazine
+          description: The ID of the bypass system
       responses:
         "200":
           description: A single bypass system
