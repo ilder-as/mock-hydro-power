@@ -7,6 +7,11 @@ properties:
     x-faker:
       helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
     example: "BP1.CD2.EF3"
+  name:
+    type: string
+    description: Name of the bypass system.
+    example: StationMan
+    x-faker: animal.bear
   related_component:
     type: object
     description: The related component, either a magazine or a station.
