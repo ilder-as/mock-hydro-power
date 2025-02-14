@@ -1,0 +1,46 @@
+type: object
+description: A single maintenance issue or task
+required: ["id", "title", "status", "created_at"]
+properties:
+  id:
+    type: string
+    description: Unique identifier for the issue
+    example: "MAINT-2024-001"
+    x-faker: random.uuid
+  created_at:
+    type: string
+    format: date-time
+    description: When the issue was created
+    example: "2024-02-03T16:28:00Z"
+    x-faker: date.recent
+  title:
+    type: string
+    description: Title/description of the issue
+    example: "Oil leak in Turbine 2"
+    x-faker: lorem.sentence
+  station_group:
+    $ref: "#/components/schemas/group"
+  # area:
+  #   type: object
+  #   properties:
+  #     code:
+  #       type: string
+  #       enum: ["HEG", "REIN", "GOV", "DAJ"]
+  #       description: Area code
+  #       example: "HEG"
+  #     name:
+  #       type: string
+  #       description: Full name of the area
+  #       example: "Heggmoen Power Station"
+  status:
+    $ref: "#/components/schemas/maintenance_status"
+  requires_callout:
+    type: boolean
+    description: Whether this issue requires on-site personnel
+    example: true
+    x-faker: datatype.boolean
+  responsible:
+    type: string
+    description: Name of the person responsible for the issue
+    example: "Tor Osaurus"
+    x-faker: name.fullName 
