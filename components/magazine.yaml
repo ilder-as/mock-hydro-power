@@ -1,10 +1,9 @@
 type: object
 description: A single magazine with its details.
-required: ["magazine"]
 properties:
   magazine:
     type: object
-    required: ["location"]
+    required: ["id"]
     properties:
       id:
         type: string
