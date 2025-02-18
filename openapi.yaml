@@ -253,7 +253,7 @@ paths:
             format: string
             x-faker:
               helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-          description: The ID of the bypass system
+            description: The ID of the bypass system
       responses:
         "200":
           description: A single bypass system
@@ -276,27 +276,6 @@ paths:
     get:
       summary: Get a list of maintenance issues
       description: Returns a list of maintenance issues and tasks that can be filtered by various criteria
-      parameters:
-        - in: query
-          name: status
-          required: false
-          schema:
-            $ref: "#/components/schemas/maintenance_status"
-          description: Filter issues by status
-        - in: query
-          name: start_date
-          required: false
-          schema:
-            type: string
-            format: date
-          description: Filter issues created on or after this date (e.g., "2024-01-01")
-        - in: query
-          name: end_date
-          required: false
-          schema:
-            type: string
-            format: date
-          description: Filter issues created before this date (e.g., "2024-02-01")
       responses:
         "200":
           description: List of maintenance issues matching the filter criteria
