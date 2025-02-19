@@ -1,7 +1,7 @@
 type: object
-description: A bypass system with configurable flow requirements for different 
+description: A bypass system with configurable flow requirements for different
 properties:
-  station:
+  bypass_system:
     type: object
     required: ["id"]
     properties:
