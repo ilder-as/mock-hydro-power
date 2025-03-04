@@ -1,0 +1,16 @@
+# reading in mw
+
+type: object
+description: A simple float reading from industrial equiptment. Type of float is indictated by parent properties (Gw, Gwh, MASL etc.)
+required: ["value"]
+properties:
+  value:
+    type: number
+    format: float
+    description: A given reading as float
+    x-faker:
+      datatype.float:
+        min: 0
+        max: 500
+    example: 245.5
+additionalProperties: false
