@@ -18,39 +18,15 @@ properties:
           format: date-time
           x-faker: date.past
           example: "2023-10-01T14:00:00Z"
+        current_level_elevation_MASL:
+          type: object
+          description: Current storage level as elevation MASL (metres above sea level).
+          $ref: "#/components/schemas/simple_reading_float"
         storage_percentage:
-          type: number
-          format: float
-          description: Storage level at the given timestamp (as a percentage)
-          x-faker:
-            datatype.float:
-              min: 0.0
-              max: 100.0
-          example: 75.0
+          $ref: "#/components/schemas/simple_reading_float"
         inflow_rate_liters_per_sec:
-          type: number
-          format: float
-          description: Inflow rate in liters per second
-          x-faker:
-            datatype.float:
-              min: 0.0
-              max: 1000.0
-          example: 500.0
+          $ref: "#/components/schemas/simple_reading_float"
         outflow_rate_liters_per_sec:
-          type: number
-          format: float
-          description: Outflow rate in liters per second
-          x-faker:
-            datatype.float:
-              min: 0.0
-              max: 1000.0
-          example: 450.0
+          $ref: "#/components/schemas/simple_reading_float"
         deviation_percentage:
-          type: number
-          format: float
-          description: Deviation from normal capacity as a percentage
-          x-faker:
-            datatype.float:
-              min: -30.0
-              max: 30.0
-          example: 5.0
+          $ref: "#/components/schemas/simple_reading_float"

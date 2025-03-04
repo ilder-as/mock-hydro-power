@@ -1,7 +1,7 @@
 # reading in mw
 
 type: object
-description: Float reading from industrial equiptment with source health information. Type of float is indictated by parten propertie (Gw, Gwh, MASL etc.)
+description: Float reading from industrial equiptment with source health information. Type of float is indictated by parent propertie (Gw, Gwh, MASL etc.)
 required: ["value", "last_update_from_source", "source_is_alive"]
 properties:
   value:
@@ -16,7 +16,7 @@ properties:
   last_update_from_source:
     type: string
     format: date-time
-    description: Timestamp of last update from the source system
+    description: Timestamp of last update from the source system (so we can evaluate if the source is alive)
     x-faker: date.recent
     example: "2024-03-14T15:30:00Z"
   source_is_alive:
