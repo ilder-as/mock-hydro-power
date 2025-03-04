@@ -12,12 +12,12 @@ components:
       $ref: "./components/overview.yaml"
     station:
       $ref: "./components/station.yaml"
-    history:
-      $ref: "./components/history.yaml"
     magazine:
       $ref: "./components/magazine.yaml"
     magazine_history:
       $ref: "./components/magazine_history.yaml"
+    station_history:
+      $ref: "./components/station_history.yaml"
     group:
       $ref: "./components/group.yaml"
     status:
@@ -104,7 +104,7 @@ paths:
           schema:
             type: string
             format: string
-            description: The ID of the station
+            description: The unique identifier of the station in RDS PS Format
             x-faker:
               helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
         - in: query
@@ -127,7 +127,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/history"
+                $ref: "#/components/schemas/station_history"
         "404":
           description: Station not found
           content:

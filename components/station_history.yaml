@@ -1,0 +1,40 @@
+type: object
+description: Historical data for a station, with day-by-day increments.
+properties:
+  station_id:
+    type: string
+    format: string
+    description: The unique identifier of the station in RDS PS Format
+    x-faker:
+      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+    example: "AB1.CD2.EF3"
+  history:
+    type: array
+    items:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          x-faker: date.past
+          example: "2023-10-01T14:00:00Z"
+        power_reading_mw:
+          type: object
+          description: Power production in megawatts.
+          $ref: "#/components/schemas/simple_reading_float"
+        used_capacity_percentage:
+          type: object
+          description: Percentage of total capacity utilized.
+          $ref: "#/components/schemas/simple_reading_float"
+        water_flow_m3_per_sec:
+          type: object
+          description: Water flow rate through turbines in cubic meters per second.
+          $ref: "#/components/schemas/simple_reading_float"
+        efficiency_percentage:
+          type: object
+          description: Efficiency of the station at the timestamp, as a percentage.
+          $ref: "#/components/schemas/simple_reading_float"
+        downtime_minutes:
+          type: object
+          description: Downtime in minutes during this period.
+          $ref: "#/components/schemas/simple_reading_float" 
