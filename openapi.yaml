@@ -121,6 +121,13 @@ paths:
             type: string
             format: date
           description: The end date for the historical data range (e.g., "2023-01-31")
+        - in: query
+          name: granularity_hours
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: The time interval in hours between data points (e.g., 24 for daily data)
       responses:
         "200":
           description: Historical data for the specified station
@@ -210,6 +217,13 @@ paths:
             type: string
             format: date
           description: The end date for the historical data range (e.g., "2023-01-31")
+        - in: query
+          name: granularity_hours
+          required: false
+          schema:
+            type: integer
+            default: 1
+          description: The time interval in hours between data points (e.g., 24 for daily data)
       responses:
         "200":
           description: Historical data for the specified magazine
