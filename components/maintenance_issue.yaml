@@ -26,7 +26,9 @@ properties:
       station_id:
         type: string
         description: Identifier for the specific power station
-        example: "FjellKraftverk.PS113"
+        x-faker:
+          helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
+        example: "AB1.CD2.EF3"
       equipment_name:
         type: string
         description: Name of the equipment involved in the issue
