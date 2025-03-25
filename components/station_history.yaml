@@ -1,13 +1,6 @@
 type: object
 description: Historical data for a station, with day-by-day increments.
 properties:
-  station_id:
-    type: string
-    format: string
-    description: The unique identifier of the station in RDS PS Format
-    x-faker:
-      helpers.replaceSymbols: "??#.??#.??#" # RDS PS Format
-    example: "AB1.CD2.EF3"
   history:
     type: array
     items:
