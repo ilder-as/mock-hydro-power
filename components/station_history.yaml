@@ -26,15 +26,3 @@ properties:
           type: object
           description: Percentage of total capacity utilized.
           $ref: "#/components/schemas/simple_reading_float"
-        water_flow_m3_per_sec:
-          type: object
-          description: Water flow rate through turbines in cubic meters per second.
-          $ref: "#/components/schemas/simple_reading_float"
-        efficiency_percentage:
-          type: object
-          description: Efficiency of the station at the timestamp, as a percentage.
-          $ref: "#/components/schemas/simple_reading_float"
-        downtime_minutes:
-          type: object
-          description: Downtime in minutes during this period.
-          $ref: "#/components/schemas/simple_reading_float" 
