@@ -16,6 +16,14 @@ properties:
         description: Name of the bypass system.
         example: StationMan
         x-faker: animal.bear
+      flow_status:
+        type: string
+        description: The status of the flow, determining the visual display/color of the bypass system
+        enum:
+          - ok
+          - not ok
+          - unknown
+        example: "ok"
       related_component:
         type: object
         description: The related component, either a magazine or a station.
