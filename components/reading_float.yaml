@@ -9,7 +9,7 @@ properties:
     format: float
     description: A given reading as float
     x-faker:
-      datatype.float:
+      number.float:
         min: 0
         max: 500
     example: 245.5

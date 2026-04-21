@@ -32,7 +32,7 @@ properties:
                 type: number
                 format: float
                 x-faker:
-                  datatype.float:
+                  number.float:
                     min: 0
                     max: 50
               is_producing:

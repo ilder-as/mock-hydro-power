@@ -13,7 +13,7 @@ properties:
         description: Current production as a percentage of maximum capacity
         example: 70
         x-faker:
-          datatype.float:
+          number.float:
             min: 0
             max: 100
       max_capacity_mw:
@@ -22,7 +22,7 @@ properties:
         description: Maximum capacity in MW
         example: 484
         x-faker:
-          datatype.float:
+          number.float:
             min: 400
             max: 500
       production_today_mwh:
@@ -31,7 +31,7 @@ properties:
         description: Production so far today in MWh
         example: 584.4
         x-faker:
-          datatype.float:
+          number.float:
             min: 0
             max: 1000
       production_last_7_days_gwh:
@@ -40,7 +40,7 @@ properties:
         description: Production in the last 7 days in GWh
         example: 34.4
         x-faker:
-          datatype.float:
+          number.float:
             min: 0
             max: 100
 
@@ -53,7 +53,7 @@ properties:
         description: Current fillgrade of all magazines as a percentage
         example: 42
         x-faker:
-          datatype.float:
+          number.float:
             min: 0
             max: 100
 
