@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as yaml from 'js-yaml';
+import { generateStationHistoryExamples } from './generate-examples.js';
 
 const componentsDir = './components';
 const outputFile = './openapi.combined.yaml';
@@ -57,6 +58,11 @@ componentFiles.forEach(file => {
 
 // Update all references in the main spec
 updateRefs(mainSpec);
+
+// Inject fresh date-relative examples for station history
+const stationHistoryResponse =
+  mainSpec.paths['/stations/{id}/history'].get.responses['200'].content['application/json'];
+stationHistoryResponse.examples = generateStationHistoryExamples();
 
 // Write the combined spec
 fs.writeFileSync(outputFile, yaml.dump(mainSpec));
