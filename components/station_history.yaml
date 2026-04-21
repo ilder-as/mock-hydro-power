@@ -19,3 +19,22 @@ properties:
           type: object
           description: Percentage of total capacity utilized.
           $ref: "#/components/schemas/simple_reading_float"
+        generator_readings:
+          type: array
+          items:
+            type: object
+            properties:
+              generator_id:
+                type: string
+                x-faker:
+                  helpers.replaceSymbols: "??#.??#.??#"
+              power_reading_mw:
+                type: number
+                format: float
+                x-faker:
+                  datatype.float:
+                    min: 0
+                    max: 50
+              is_producing:
+                type: boolean
+                x-faker: datatype.boolean
