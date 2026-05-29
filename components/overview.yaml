@@ -67,6 +67,21 @@ properties:
       income_last_7_days:
         $ref: "#/components/schemas/monetary_value"
         description: Income from production in the last 7 days
+      grid_feed_cost_today:
+        $ref: "#/components/schemas/monetary_value"
+        description: Grid feed-in cost today (innmatningskostnad)
+      production_fee_today:
+        $ref: "#/components/schemas/monetary_value"
+        description: Production fee/levy today (avgift produksjon)
+      personnel_cost_today:
+        $ref: "#/components/schemas/monetary_value"
+        description: Personnel cost today (personalkostnad)
+      net_income_today:
+        $ref: "#/components/schemas/monetary_value"
+        description: >-
+          Net income today after deducting grid feed cost, production fee and
+          personnel cost from gross spot-market income (nettoinntekt etter
+          kostnader)
       spot_price_now:
         description: Current spot price per MWh.
         $ref: "#/components/schemas/monetary_value"
