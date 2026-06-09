@@ -6,7 +6,7 @@ properties:
     format: float
     description: Latitude of the location
     x-faker:
-      datatype.float:
+      number.float:
         min: 66.0
         max: 69.5
     example: 67.5
@@ -15,7 +15,7 @@ properties:
     format: float
     description: Longitude of the location
     x-faker:
-      datatype.float:
+      number.float:
         min: 13.0
         max: 20.0
     example: 15.5

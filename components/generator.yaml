@@ -13,7 +13,7 @@ properties:
     format: float
     description: Rated capacity (merkeytelse) of the generator, typically as indicated on the nameplate, in MW
     x-faker:
-      datatype.float:
+      number.float:
         min: 0
         max: 50
     example: 25.5

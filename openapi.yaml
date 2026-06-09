@@ -149,6 +149,13 @@ paths:
   /magazines:
     get:
       summary: Get list of water reservoirs (magazines) and their details
+      parameters:
+        - in: query
+          name: pinned
+          required: false
+          schema:
+            type: boolean
+          description: If true, returns only the curated list of pinned/priority magazines
       responses:
         "200":
           description: List of water reservoirs with levels and deviations

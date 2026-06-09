@@ -63,7 +63,7 @@ properties:
               format: float
               description: Required flow rate in liters per second
               x-faker:
-                datatype.float:
+                number.float:
                   min: 50.0
                   max: 150.0
               example: 100.0

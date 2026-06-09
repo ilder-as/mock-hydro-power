@@ -38,7 +38,7 @@ properties:
         format: float
         description: Total production today in MWh
         x-faker:
-          datatype.float:
+          number.float:
             min: 1
             max: 50
         example: 120.5
@@ -47,7 +47,7 @@ properties:
         format: float
         description: Total production in the last 7 days in MWh
         x-faker:
-          datatype.float:
+          number.float:
             min: 1
             max: 250
         example: 700.0
@@ -56,7 +56,7 @@ properties:
         format: float
         description: Percentage of capacity used today
         x-faker:
-          datatype.float:
+          number.float:
             min: 1
             max: 100
         example: 75.0
@@ -65,7 +65,7 @@ properties:
         format: float
         description: Percentage of capacity used in the last 7 days
         x-faker:
-          datatype.float:
+          number.float:
             min: 1
             max: 100
         example: 80.0
